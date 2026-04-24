@@ -3,18 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Astronomy - Picture of the Day</title>
 </head>
 <body>
     <header id="header">
         <nav>
             <a href="../index.html">Home</a>
-            <a href="../Astronomia/astronomia.html">Astronomía</a>
             <a href="../Asteroide/asteroide.html">Asteroide</a>
         </nav>
     </header>
     <main id="main">
-        <h1>Home</h1>
+        <div id="hero">
+            <h1 id="titleImg"></h1>
+            <span>Picture of the Day</span>
+        </div>
+
+        <div>
+            <div id="imgAstronomySearch"></div>
+
+            <div>
+                <input type="number" id="year" placeholder="Año (YYYY)">
+                <input type="number" id="month" placeholder="Mes (MM)">
+                <input type="number" id="day" placeholder="Día (DD)">
+                <button onclick="date()">Astronomia</button>
+            </div>
+        </div>
+
     </main>
     <footer id="footer"></footer>
 
