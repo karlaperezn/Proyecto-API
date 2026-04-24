@@ -1,7 +1,7 @@
 function inputDate() {
     let year = getId("year").value;
-    let month = getId("month").value
-    let day = getId("day").value
+    let month = getId("month").value;
+    let day = getId("day").value;
 
     let date = `${year}-${month}-${day}`;
 
@@ -26,7 +26,7 @@ function astronomyImg(date, id) {
     const nasaKey = "IIYyn4oPoU1LOKO0qz0JDdgTaKSI0m1GfNeUysTk"
     fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaKey}&date=${date}`).then(res => res.json()).then(data => {
         getId(id).style.backgroundImage = `url(${data.url})`;
-        getId("titleImg").innerText = data.title;
+        //getId("titleImg").innerText = data.title;
         getId(id).innerHTML = `<img src=${data.url}>`
 
 
