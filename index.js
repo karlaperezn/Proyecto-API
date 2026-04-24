@@ -5,7 +5,7 @@ function inputDate() {
 
     let date = `${year}-${month}-${day}`;
 
-    astronomyImg(date, "imgAstronomySearch")
+    astronomyImg(date, "hero")
 }
 
 function todayDate() {
@@ -26,8 +26,7 @@ function astronomyImg(date, id) {
     const nasaKey = "IIYyn4oPoU1LOKO0qz0JDdgTaKSI0m1GfNeUysTk"
     fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaKey}&date=${date}`).then(res => res.json()).then(data => {
         getId(id).style.backgroundImage = `url(${data.url})`;
-        //getId("titleImg").innerText = data.title;
-        getId(id).innerHTML = `<img src=${data.url}>`
+        getId("titleImg").innerText = data.title;
 
 
 })
