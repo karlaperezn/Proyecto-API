@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="esp">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
     <title>Astronomy - Picture of the Day</title>
 </head>
+
 <body>
     <header id="header">
         <nav>
             <a href="../index.html">Home</a>
             <a href="../Asteroide/asteroide.html">Asteroide</a>
         </nav>
-    </header>
-    <main id="main">
+
         <div id="hero">
-            <h1 id="titleImg"></h1>
-            <span>Picture of the Day</span>
+            <div id="infoPicture">
+                <h1 id="titleImg"></h1>
+                <span>Picture of the Day</span>
+            </div>
         </div>
 
-        
-        <div>
-            <div id="imgAstronomySearch"></div>
+    </header>
+    <main id="main">
 
-            <div>
-                <input type="number" id="year" placeholder="Año (YYYY)">
-                <input type="number" id="month" placeholder="Mes (MM)">
-                <input type="number" id="day" placeholder="Día (DD)">
-                <button onclick="inputDate()">Astronomia</button>
-            </div>
+        <div>
+            <input type="number" id="year" placeholder="Year (YYYY)">
+            <input type="number" id="month" placeholder="Month (MM)">
+            <input type="number" id="day" placeholder="Day (DD)">
+            <button onclick="inputDate()">Astronomia</button>
+        </div>
+
+        <div id="description"></div>
+
+        <div>
+            <h2>Last Pictures of the Week</h2>
+            <div id="gallery"></div>
+
         </div>
 
     </main>
@@ -35,4 +51,5 @@
 
     <script src="./index.js"></script>
 </body>
+
 </html>
