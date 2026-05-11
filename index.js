@@ -1,45 +1,33 @@
-const { start, end } = getLast7Days();
-const nasaKey = "IIYyn4oPoU1LOKO0qz0JDdgTaKSI0m1GfNeUysTk"
-
-//Fecha puesta por usuario
-function inputDate() {
-    let year = getId("year").value;
-    let month = getId("month").value;
-    let day = getId("day").value;
-
-    let date = `${year}-${month}-${day}`;
-
-    astronomyImg(date, "hero")
+function getId(id) {
+    return document.getElementById(id);
 }
 
-//Fecha de hoy
+const nasaKey = "IIYyn4oPoU1LOKO0qz0JDdgTaKSI0m1GfNeUysTk";
+
+// ── Hero ──
 function todayDate() {
     const hoy = new Date();
-
-    let year = hoy.getFullYear();
-    let month = String(hoy.getMonth() + 1).padStart(2, '0');
-    let day = String(hoy.getDate()).padStart(2, '0');
-
-
-    let date = `${year}-${month}-${day}`;
-
-    astronomyImg(date, "hero")
+    const year = hoy.getFullYear();
+    const month = String(hoy.getMonth() + 1).padStart(2, '0');
+    const day = String(hoy.getDate()).padStart(2, '0');
+    astronomyImg(`${year}-${month}-${day}`, "hero");
 }
 
-//Hero
+function inputDate() {
+    const year = getId("year").value;
+    const month = getId("month").value;
+    const day = getId("day").value;
+    astronomyImg(`${year}-${month}-${day}`, "hero");
+}
+
 function astronomyImg(date, id, attempt = 0) {
     fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaKey}&date=${date}`)
         .then(res => res.json())
         .then(data => {
-            // Si hay error o no es imagen, prueba el día anterior
             if (data.code || data.media_type !== "image") {
-                if (attempt < 5) { // máximo 5 intentos hacia atrás
-                    const prevDay = getPreviousDay(date);
-                    astronomyImg(prevDay, id, attempt + 1);
-                }
+                if (attempt < 5) astronomyImg(getPreviousDay(date), id, attempt + 1);
                 return;
             }
-
             getId(id).style.backgroundImage = `url(${data.url})`;
             getId("titleImg").innerText = data.title;
             getId("description").innerHTML = `<p>${data.explanation}</p>`;
@@ -52,34 +40,18 @@ function getPreviousDay(dateStr) {
     return date.toISOString().split("T")[0];
 }
 
-
-todayDate()
-
-//Seccion Galeria ultimas 5 imagenes
+// ── Galería ──
 function getLast7Days() {
     const today = new Date();
     const past = new Date();
-
     past.setDate(today.getDate() - 6);
     today.setDate(today.getDate() - 1);
-
-    const format = (date) => date.toISOString().split("T")[0];
-
-    return {
-        start: format(past),
-        end: format(today)
-    };
+    const format = (d) => d.toISOString().split("T")[0];
+    return { start: format(past), end: format(today) };
 }
-
-fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaKey}&start_date=${start}&end_date=${end}`)
-    .then(res => res.json())
-    .then(data => {
-        renderGallery(data);
-    });
 
 function renderGallery(data) {
     const gallery = getId("gallery");
-
     gallery.innerHTML = "";
 
     data.reverse().forEach(item => {
@@ -87,17 +59,44 @@ function renderGallery(data) {
 
         const card = document.createElement("div");
         card.className = "card";
-
         card.innerHTML = `
-      <img src="${item.url}" alt="${item.title}" />
-      <p>${item.date}</p>
-    `;
-
+            <img src="${item.url}" alt="${item.title}" />
+            <p>${item.date}</p>
+        `;
+        card.querySelector("img").addEventListener("click", () => openPopup(item));
         gallery.appendChild(card);
     });
 }
 
-//Get ID
-function getId(id) {
-    return document.getElementById(id)
+// ── Popup ──
+function openPopup(item) {
+    getId("popupImg").src = item.url;
+    getId("popupImg").alt = item.title;
+    getId("popupTitle").innerText = item.title;
+    getId("popupDate").innerText = item.date;
+    getId("popup").classList.add("active");
+    document.body.style.overflow = "hidden";
 }
+
+function closePopup() {
+    getId("popup").classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+// ── Init — espera a que el DOM esté listo ──
+document.addEventListener("DOMContentLoaded", () => {
+    todayDate();
+
+    const { start, end } = getLast7Days();
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaKey}&start_date=${start}&end_date=${end}`)
+        .then(res => res.json())
+        .then(data => renderGallery(data));
+
+    getId("popupClose").addEventListener("click", closePopup);
+    getId("popup").addEventListener("click", (e) => {
+        if (e.target === getId("popup")) closePopup();
+    });
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closePopup();
+    });
+});
