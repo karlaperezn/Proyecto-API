@@ -27,16 +27,31 @@ function todayDate() {
 }
 
 //Hero
-function astronomyImg(date, id) {
-    const nasaKey = "IIYyn4oPoU1LOKO0qz0JDdgTaKSI0m1GfNeUysTk"
-    fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaKey}&date=${date}`).then(res => res.json()).then(data => {
-        getId(id).style.backgroundImage = `url(${data.url})`;
-        getId("titleImg").innerText = data.title;
-        getId("description").innerHTML = `<p>${data.explanation}</p>`
+function astronomyImg(date, id, attempt = 0) {
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=${nasaKey}&date=${date}`)
+        .then(res => res.json())
+        .then(data => {
+            // Si hay error o no es imagen, prueba el día anterior
+            if (data.code || data.media_type !== "image") {
+                if (attempt < 5) { // máximo 5 intentos hacia atrás
+                    const prevDay = getPreviousDay(date);
+                    astronomyImg(prevDay, id, attempt + 1);
+                }
+                return;
+            }
 
-
-    })
+            getId(id).style.backgroundImage = `url(${data.url})`;
+            getId("titleImg").innerText = data.title;
+            getId("description").innerHTML = `<p>${data.explanation}</p>`;
+        });
 }
+
+function getPreviousDay(dateStr) {
+    const date = new Date(dateStr);
+    date.setDate(date.getDate() - 1);
+    return date.toISOString().split("T")[0];
+}
+
 
 todayDate()
 

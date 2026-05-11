@@ -1,92 +1,254 @@
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgb(22, 23, 31);
-  color: white;
-  font-family: "Sansation", sans-serif;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-div {
-  display: flex;
-  flex-direction: column;
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(22, 23, 31);
+    color: white;
+    font-family: "Sansation", sans-serif;
 }
 
 p {
-  font-weight: 200;
-  font-size: 14px;
-  line-height: 1.25rem;
-  text-align: center;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 1.25rem;
+    text-align: center;
 }
 
+/* ── Header & Hero ── */
 header {
-  flex-direction: column;
-  width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+    padding: 16px 24px;
+    position: absolute;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+}
+
+nav a:hover {
+    opacity: 1;
 }
 
 #hero {
-  flex-direction: column;
-  margin-top: -30px;
-  width: 100%;
-  height: 500px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end;
 }
 
 #infoPicture {
-  width: 1200px;
-  margin: 4%;
+    width: 100%;
+    padding: 32px 40px;
+    background: linear-gradient(to top, rgba(22, 23, 31, 0.95) 0%, transparent 100%);
 }
 
-main {
-  width: 1200px;
-  padding: auto;
+#infoPicture h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 6px;
 }
+
+#infoPicture span {
+    font-size: 13px;
+    font-weight: 300;
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ── Main ── */
+main {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 24px;
+}
+
 
 #resultsDate {
-  align-items: center;
-  justify-content: center;
-  margin: 4%;
-  width: 66.66%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin: 40px auto;
+    width: 100%;
+    max-width: 1000px;
+}
+
+#description p {
+    text-align: center;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.6rem;
+    opacity: 0.85;
 }
 
 #inputsDate {
+    display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 input {
     font-family: "Sansation", sans-serif;
-    background-color: rgb(22, 23, 31);
-    padding: 12px;
-    border: solid 1px white;
+    color: white;
+    background-color: transparent;
+    padding: 10px 16px;
+    border: solid 1px rgba(255, 255, 255, 0.4);
     border-radius: 20px;
+    width: 140px;
+    transition: border-color 0.2s;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+}
+
+input:focus {
+    outline: none;
+    border-color: white;
+}
+
+/* Quita las flechas del input type number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
 }
 
 button {
     font-family: "Sansation", sans-serif;
     font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.05em;
     border-radius: 20px;
     border: none;
-    padding: 12px;
+    padding: 10px 24px;
+    background-color: white;
+    color: rgb(22, 23, 31);
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* ── Galería ── */
+main>div:last-child {
+    margin-bottom: 60px;
+}
+
+main>div:last-child h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    opacity: 0.9;
 }
 
 #gallery {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .card img {
-  width: 100%;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 8px;
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: opacity 0.2s;
+}
+
+.card img:hover {
+    opacity: 0.8;
 }
 
 .card p {
-  text-align: center;
-  font-size: 12px;
-  color: #ccc;
+    text-align: center;
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* ── Tablet (max 1024px) ── */
+@media (max-width: 1024px) {
+    main {
+        padding: 0 32px;
+    }
+
+    #gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ── Móvil (max 600px) ── */
+@media (max-width: 600px) {
+    #hero {
+        height: 320px;
+    }
+
+    #infoPicture {
+        padding: 24px 20px;
+    }
+
+    #infoPicture h1 {
+        font-size: 1.4rem;
+    }
+
+    main {
+        padding: 0 16px;
+    }
+
+    #resultsDate {
+        margin: 28px auto;
+    }
+
+    #inputsDate {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    #gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
