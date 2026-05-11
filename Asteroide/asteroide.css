@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(22, 23, 31);
+    color: white;
+    font-family: "Sansation", sans-serif;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    padding: 16px 24px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+}
+
+nav a:hover { opacity: 1; }
+
+#hero {
+    padding: 40px 24px 32px;
+    text-align: center;
+}
+
+#hero h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+#hero span {
+    font-size: 13px;
+    font-weight: 300;
+    opacity: 0.6;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+main {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 24px 60px;
+}
+
+#inputsDate {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+}
+
+input, button {
+    font-family: "Sansation", sans-serif;
+    font-size: 13px;
+    border-radius: 20px;
+    padding: 10px 16px;
+}
+
+input {
+    color: white;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: border-color 0.2s;
+}
+
+input:focus { outline: none; border-color: white; }
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+button {
+    font-weight: 700;
+    border: none;
+    background: white;
+    color: rgb(22, 23, 31);
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+button:hover { opacity: 0.85; }
+
+#counter {
+    text-align: center;
+    opacity: 0.5;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+#asteroidList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.card {
+    background: rgb(30, 31, 42);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border: 1px solid transparent;
+}
+
+.card.dangerous {
+    border-color: rgba(255, 80, 80, 0.4);
+}
+
+.card h3 {
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.card p {
+    font-size: 13px;
+    font-weight: 300;
+    text-align: left;
+    opacity: 0.85;
+}
+
+@media (max-width: 1024px) {
+    #asteroidList { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    #asteroidList { grid-template-columns: 1fr; }
+    input, button { width: 100%; }
+}

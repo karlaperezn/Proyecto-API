@@ -1,22 +1,39 @@
 <!DOCTYPE html>
-<html lang="esp">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="asteroide.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700&display=swap" rel="stylesheet">
     <title>Astronomy - Asteroide</title>
 </head>
 <body>
-    <header id="header">
+    <header>
         <nav>
             <a href="../index.html">Home</a>
-            <a href="../Asteroide/asteroide.html">Asteroide</a>
+            <a>Asteroide</a>
         </nav>
+        <div id="hero">
+            <h1>Asteroides</h1>
+            <span>Near Earth Objects</span>
+        </div>
     </header>
-    <main id="main">
-        <h1>Asteroide</h1>
 
+    <main>
+        <div id="inputsDate">
+            <input type="date" id="startDate">
+            <input type="date" id="endDate">
+            <button onclick="buscarAsteroides()">Buscar</button>
+        </div>
+
+        <div id="results">
+            <p id="counter"></p>
+            <div id="asteroidList"></div>
+        </div>
     </main>
-    <footer id="footer"></footer>
+
     <script src="./asteroide.js"></script>
 </body>
 </html>

@@ -13,6 +13,7 @@ body {
     font-family: "Sansation", sans-serif;
 }
 
+
 /* ── Tipografía ── */
 p {
     font-size: 14px;
@@ -30,9 +31,11 @@ h2 {
 /* ── Nav ── */
 nav {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
     gap: 20px;
-    padding: 16px 24px;
-    position: absolute;
+    padding: 16px 80px;
     z-index: 10;
 }
 
@@ -41,11 +44,10 @@ nav a {
     text-decoration: none;
     font-weight: 700;
     font-size: 14px;
-    opacity: 0.85;
-    transition: opacity 0.2s;
 }
 
-nav a:hover { opacity: 1; }
+nav a:hover { color: rgba(255, 255, 255, 0.754) }
+
 
 /* ── Hero ── */
 header { width: 100%; }
@@ -62,6 +64,7 @@ header { width: 100%; }
     width: 100%;
     padding: 32px 40px;
     background: linear-gradient(to top, rgba(22, 23, 31, 0.95), transparent);
+    text-align: center;
 }
 
 #infoPicture h1 { font-size: 2rem; margin-bottom: 6px; }
@@ -90,6 +93,8 @@ main {
     max-width: 1000px;
 }
 
+
+/* ── Inputs y botón ── */
 #inputsDate {
     display: flex;
     gap: 12px;
@@ -97,7 +102,6 @@ main {
     flex-wrap: wrap;
 }
 
-/* ── Inputs y botón ── */
 input, button {
     font-family: "Sansation", sans-serif;
     font-size: 13px;
@@ -133,11 +137,17 @@ button:hover { opacity: 0.85; }
 /* ── Galería ── */
 main > div:last-child { margin-bottom: 60px; }
 
+#sectionGallery {
+    margin-top: 8%;
+}
+
 #gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
 }
+
+h2 { text-align: center; margin-bottom: 20px;}
 
 .card img {
     width: 100%;
